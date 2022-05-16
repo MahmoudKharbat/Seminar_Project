@@ -16,18 +16,26 @@ public class MovePhoneDown extends Fragment {
     private Runnable runnable;
     private Handler handler;
 
+    private CallBack callBack;
+
+    public void setCallBack(CallBack callBack){
+        this.callBack = callBack;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_move_phone_down, container, false);
         hold = new HoldPhone();
+        ((HoldPhone)hold).setCallBack(callBack);
         handler = new Handler();
+        callBack.onFragmentStart(2);
 
         runnable = new Runnable() {
             @Override
             public void run() {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, hold).commit();
+                callBack.onFragmentStop(2);
+                requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, hold).commit();
             }
         };
         handler.postDelayed(runnable, 5000);

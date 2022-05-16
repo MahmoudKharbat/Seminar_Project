@@ -17,19 +17,24 @@ public class HoldPhone extends Fragment {
     private Runnable runnable;
     private Handler handler;
 
+    private CallBack callBack;
+
+    public void setCallBack(CallBack callBack){
+        this.callBack = callBack;
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_hold_phone, container, false);
         handler = new Handler();
-        resultIntent = new Intent(view.getContext(), ResultsActivity.class);
-
+        callBack.onFragmentStart(3);
         runnable = new Runnable() {
             @Override
             public void run() {
-                startActivity(resultIntent);
-                getActivity().finish();
+                callBack.onFragmentStop(3);
             }
         };
         handler.postDelayed(runnable, 5000);

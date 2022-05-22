@@ -53,6 +53,16 @@
             android:layout_marginHorizontal="20dp"
             />
 
+        <TextView
+            android:id="@+id/results_txt_note"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="There is a risk of developing Parkinson's disease.
+The attending physician at the HMO should be contacted as soon as possible"
+            android:textColor="#000"
+            android:textSize="18sp"
+            />
     </LinearLayout>
 
     <LinearLayout

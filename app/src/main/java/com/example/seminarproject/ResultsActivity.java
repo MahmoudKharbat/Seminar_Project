@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -12,12 +13,16 @@ import java.util.ArrayList;
 public class ResultsActivity extends AppCompatActivity {
 
     private TextView test_results_txt;
-
+    private TextView results_txt_note;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         test_results_txt = findViewById(R.id.test_results_txt);
+        results_txt_note = findViewById(R.id.results_txt_note);
+        results_txt_note.setVisibility(View.INVISIBLE);
+
+
         double [] points = getIntent().getExtras().getDoubleArray("points");
         double results = 0;
         for(int i = 0 ; i < points.length - 1; i++) {
@@ -36,6 +41,7 @@ public class ResultsActivity extends AppCompatActivity {
         }else{
             test_results_txt.setText("Positive");
             test_results_txt.setTextColor(Color.RED);
+            results_txt_note.setVisibility(View.VISIBLE);
         }
 
     }
